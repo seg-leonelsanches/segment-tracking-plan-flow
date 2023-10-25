@@ -28,36 +28,17 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Deploy to Segment
         run: |
-          echo $PUBLIC_API_SECRET
           curl --location --request PUT 'https://api.segmentapis.com/tracking-plans/tp_2XGIDqH0kPBCZc4dGV7HvAmA6Sb/rules' \
             --header 'Content-Type: application/vnd.segment.v1+json' \
             --header 'Accept: application/vnd.segment.v1+json' \
-            --header 'Authorization: Bearer 12345' \
+            --header 'Authorization: Bearer "$PUBLIC_API_SECRET"' \
             --data '{
               "rules": [
                 {
-                  "jsonSchema": {
-                    "description": "JSON Schema of this rule.",
-                    "title": "jsonSchema"
-                  },
-                  "type": "IDENTIFY",
-                  "version": "<number>",
-                  "key": "<string>",
-                  "createdAt": "<string>",
-                  "updatedAt": "<string>",
-                  "deprecatedAt": "<string>"
-                },
-                {
-                  "jsonSchema": {
-                    "description": "JSON Schema of this rule.",
-                    "title": "jsonSchema"
-                  },
+                  "jsonSchema": {},
                   "type": "TRACK",
-                  "version": "<number>",
-                  "key": "<string>",
-                  "createdAt": "<string>",
-                  "updatedAt": "<string>",
-                  "deprecatedAt": "<string>"
+                  "version": "1",
+                  "key": "Mi Evento"
                 }
               ]
             }'
