@@ -31,14 +31,14 @@ jobs:
           curl --location --request PUT 'https://api.segmentapis.com/tracking-plans/tp_2XGIDqH0kPBCZc4dGV7HvAmA6Sb/rules' \
             --header 'Content-Type: application/vnd.segment.v1+json' \
             --header 'Accept: application/vnd.segment.v1+json' \
-            --header 'Authorization: Bearer "$PUBLIC_API_SECRET"' \
+            --header 'Authorization: Bearer {{ secrets.PUBLIC_API_SECRET }} \
             --data '{
               "rules": [
                 {
                   "jsonSchema": {},
                   "type": "TRACK",
                   "version": "1",
-                  "key": "Mi Evento"
+                  "key": "My Sample Event"
                 }
               ]
             }'
