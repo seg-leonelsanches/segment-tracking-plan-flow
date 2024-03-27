@@ -3,6 +3,7 @@
     {
       "jsonSchema": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$comment": "This is a test JSON Schema.",
         "description": "This is a test JSON Schema.",
         "title": "A JSON Schema title.",
         "properties": {
