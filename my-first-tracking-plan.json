@@ -3,7 +3,9 @@
     {
       "jsonSchema": {
         "description": "JSON Schema of this rule.",
-        "title": "jsonSchema"
+        "title": "jsonSchema",
+        "properties": {},
+        "context": {}
       },
       "type": "PAGE",
       "version": "1",

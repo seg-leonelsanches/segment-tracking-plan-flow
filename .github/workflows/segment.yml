@@ -30,14 +30,14 @@ jobs:
         id: get_changed_files
         with:
           token: "${{secrets.GITHUB_TOKEN}}"
+      - uses: komorebitech/read-files-action@v1.5
+        id: read_migration_files
+        with:
+          files: ${{ steps.get_changed_files.outputs.added }}
+          pattern: '*.json'
       - name: Files Output
         run: |
-          echo "${{ steps.get_changed_files.outputs.added }}"
-      #- uses: komorebitech/read-files-action@v1.5
-      #  id: read_migration_files
-      #  with:
-      #    files: ${{ steps.get_changed_files.outputs.added }}
-      #    pattern: '*'
+          echo "${{ steps.read_migration_files.outputs.content }}"
       #- name: Get changed files
       #  id: changed-files
       #  run: |
