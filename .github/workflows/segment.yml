@@ -34,7 +34,7 @@ jobs:
         run: |
           FILES='${{ steps.get_changed_files.outputs.all }}'
           FILES2=$(echo $FILES | tr -d [ | tr -d ])
-          PARTS=(${FILES//,/ })
+          PARTS=(${FILES2//,/ })
           echo $PARTS
           echo $PARTS >> $GITHUB_OUTPUT
       - uses: komorebitech/read-files-action@v1.5

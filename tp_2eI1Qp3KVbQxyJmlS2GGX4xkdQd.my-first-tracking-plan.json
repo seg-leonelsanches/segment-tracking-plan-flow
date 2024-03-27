@@ -2,6 +2,7 @@
   "rules": [
     {
       "jsonSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "description": "This is a test JSON Schema.",
         "title": "A JSON Schema title.",
         "properties": {
