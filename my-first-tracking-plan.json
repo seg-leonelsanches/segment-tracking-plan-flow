@@ -1,0 +1,13 @@
+{
+  "rules": [
+    {
+      "jsonSchema": {
+        "description": "JSON Schema of this rule.",
+        "title": "jsonSchema"
+      },
+      "type": "PAGE",
+      "version": "1",
+      "key": "My Sample Event"
+    }
+  ]
+}
