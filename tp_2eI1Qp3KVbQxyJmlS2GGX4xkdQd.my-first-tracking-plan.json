@@ -15,6 +15,13 @@
       "type": "PAGE",
       "version": "1",
       "key": "My Sample Page Event"
+    },
+    {
+      "jsonSchema": {
+      },
+      "type": "TRACK",
+      "version": "1",
+      "key": "My Sample Tack Event"
     }
   ]
 }

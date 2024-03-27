@@ -32,6 +32,7 @@ jobs:
           token: "${{secrets.GITHUB_TOKEN}}"
       - name: Get Tracking Plan IDs
         run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           FILES='${{ steps.get_changed_files.outputs.all }}'
           FILES2=$(echo $FILES | tr -d [ | tr -d ])
           PARTS=(${FILES2//,/ })
