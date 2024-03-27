@@ -34,7 +34,7 @@ jobs:
         id: read_migration_files
         with:
           files: ${{ steps.get_changed_files.outputs.added }}
-          pattern: '\.json'
+          pattern: '.*json'
       - name: Files Output
         run: |
           echo "${{ steps.read_migration_files.outputs.content }}"

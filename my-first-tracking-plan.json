@@ -2,7 +2,7 @@
   "rules": [
     {
       "jsonSchema": {
-        "description": "JSON Schema of this rule.",
+        "description": "This is a test JSON Schema.",
         "title": "A JSON Schema title.",
         "properties": {},
         "context": {}
