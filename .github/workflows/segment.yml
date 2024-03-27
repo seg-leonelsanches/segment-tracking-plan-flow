@@ -43,13 +43,4 @@ jobs:
             --header 'Content-Type: application/vnd.segment.v1+json' \
             --header 'Accept: application/vnd.segment.v1+json' \
             --header 'Authorization: Bearer ${{ secrets.PUBLIC_API_SECRET }} \
-            --data '{
-              "rules": [
-                {
-                  "jsonSchema": {},
-                  "type": "TRACK",
-                  "version": "1",
-                  "key": "My Sample Event"
-                }
-              ]
-            }'
+            --data '{ "rules": [{ "jsonSchema": {}, "type": "TRACK", "version": "1", "key": "My Sample Event" }]}'
