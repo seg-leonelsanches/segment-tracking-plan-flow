@@ -4,8 +4,9 @@
       "jsonSchema": {
         "description": "This is a test JSON Schema.",
         "title": "A JSON Schema title.",
-        "properties": {},
-        "context": {}
+        "properties": {
+            "context": {}
+        }
       },
       "type": "PAGE",
       "version": "1",
