@@ -24,31 +24,31 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: "Call API 1"
-        uses: indiesdev/curl@v1.1
-        id: api
-        with:
-          url: https://api.segmentapis.com/tracking-plans/tp_2eI1Qp3KVbQxyJmlS2GGX4xkdQd/rules
-          method: "PUT"
-          accept: 200
-          headers: '{ "Content-Type": "application/json", "Accept": "application/vnd.segment.v1+json", "Authorization": "${{ secrets.PUBLIC_API_SECRET }}" }'
-          body: '{\n "rules": [{ "jsonSchema": { "description": "JSON Schema of this rule.", "title": "jsonSchema" }, "type": "PAGE", "version": "1", "key": "My Sample Event" }]}'
-          log-response: true
+      # - name: "Call API 1"
+      #  uses: indiesdev/curl@v1.1
+      #  id: api
+      #  with:
+      #    url: https://api.segmentapis.com/tracking-plans/tp_2eI1Qp3KVbQxyJmlS2GGX4xkdQd/rules
+      #    method: "PUT"
+      #    accept: 200
+      #    headers: '{ "Content-Type": "application/json", "Accept": "application/vnd.segment.v1+json", "Authorization": "${{ secrets.PUBLIC_API_SECRET }}" }'
+      #    body: '{\n "rules": [{ "jsonSchema": { "description": "JSON Schema of this rule.", "title": "jsonSchema" }, "type": "PAGE", "version": "1", "key": "My Sample Event" }]}'
+      #    log-response: true
 
       # Runs a set of commands using the runners shell
-      # - name: Deploy to Segment
-      #  run: |
-      #    curl --location --request PUT 'https://api.segmentapis.com/tracking-plans/tp_2XGIDqH0kPBCZc4dGV7HvAmA6Sb/rules' \
-      #      --header 'Content-Type: application/vnd.segment.v1+json' \
-      #      --header 'Accept: application/vnd.segment.v1+json' \
-      #      --header 'Authorization: Bearer {{ secrets.PUBLIC_API_SECRET }} \
-      #      --data '{
-      #        "rules": [
-      #          {
-      #            "jsonSchema": {},
-      #            "type": "TRACK",
-      #            "version": "1",
-      #            "key": "My Sample Event"
-      #          }
-      #        ]
-      #      }'
+      - name: Deploy to Segment
+        run: |
+          curl --location --request PUT 'https://api.segmentapis.com/tracking-plans/tp_2eI1Qp3KVbQxyJmlS2GGX4xkdQd/rules' \
+            --header 'Content-Type: application/vnd.segment.v1+json' \
+            --header 'Accept: application/vnd.segment.v1+json' \
+            --header 'Authorization: Bearer ${{ secrets.PUBLIC_API_SECRET }} \
+            --data '{
+              "rules": [
+                {
+                  "jsonSchema": {},
+                  "type": "TRACK",
+                  "version": "1",
+                  "key": "My Sample Event"
+                }
+              ]
+            }'
