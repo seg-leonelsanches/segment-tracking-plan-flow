@@ -3,7 +3,7 @@
     {
       "jsonSchema": {
         "description": "JSON Schema of this rule.",
-        "title": "jsonSchema",
+        "title": "A JSON Schema title.",
         "properties": {},
         "context": {}
       },
