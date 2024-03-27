@@ -39,6 +39,7 @@ jobs:
       - name: Deploy to Segment
         run: |
           curl --location --request PUT 'https://api.segmentapis.com/tracking-plans/tp_2eI1Qp3KVbQxyJmlS2GGX4xkdQd/rules' \
+            --http1.1 \
             --header 'Content-Type: application/vnd.segment.v1+json' \
             --header 'Accept: application/vnd.segment.v1+json' \
             --header 'Authorization: Bearer ${{ secrets.PUBLIC_API_SECRET }} \
