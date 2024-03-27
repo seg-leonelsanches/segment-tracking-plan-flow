@@ -24,23 +24,28 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      # - name: "Call API 1"
-      #  uses: indiesdev/curl@v1.1
-      #  id: api
-      #  with:
-      #    url: https://api.segmentapis.com/tracking-plans/tp_2eI1Qp3KVbQxyJmlS2GGX4xkdQd/rules
-      #    method: "PUT"
-      #    accept: 200
-      #    headers: '{ "Content-Type": "application/json", "Accept": "application/vnd.segment.v1+json", "Authorization": "${{ secrets.PUBLIC_API_SECRET }}" }'
-      #    body: '{\n "rules": [{ "jsonSchema": { "description": "JSON Schema of this rule.", "title": "jsonSchema" }, "type": "PAGE", "version": "1", "key": "My Sample Event" }]}'
-      #    log-response: true
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
+      - name: Get changed files
+        id: changed-files
+        run: |
+            if ${{ github.event_name == 'pull_request' }}; then
+                echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
+            else
+                echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
+            fi
+      - name: List changed files
+        run: |
+            for file in ${{ steps.changed-files.outputs.changed_files }}; do
+                echo "$file was changed"
+            done
 
       # Runs a set of commands using the runners shell
-      - name: Deploy to Segment
-        run: |
-          curl --location --request PUT 'https://api.segmentapis.com/tracking-plans/tp_2eI1Qp3KVbQxyJmlS2GGX4xkdQd/rules' \
-            --http1.1 \
-            --header 'Content-Type: application/vnd.segment.v1+json' \
-            --header 'Accept: application/vnd.segment.v1+json' \
-            --header 'Authorization: Bearer ${{ secrets.PUBLIC_API_SECRET }}' \
-            --data '{ "rules": [{ "jsonSchema": {}, "type": "TRACK", "version": "1", "key": "My Sample Event" }]}'
+      # - name: Deploy to Segment
+      #  run: |
+      #    curl --location --request PUT 'https://api.segmentapis.com/tracking-plans/tp_2eI1Qp3KVbQxyJmlS2GGX4xkdQd/rules' \
+      #      --http1.1 \
+      #      --header 'Content-Type: application/vnd.segment.v1+json' \
+      #      --header 'Accept: application/vnd.segment.v1+json' \
+      #      --header 'Authorization: Bearer ${{ secrets.PUBLIC_API_SECRET }}' \
+      #      --data '{ "rules": [{ "jsonSchema": {}, "type": "TRACK", "version": "1", "key": "My Sample Event" }]}'
