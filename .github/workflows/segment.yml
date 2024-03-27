@@ -30,9 +30,12 @@ jobs:
         id: get_changed_files
         with:
           token: "${{secrets.GITHUB_TOKEN}}"
-      - name: Changed Files Output
+      - name: Get Tracking Plan IDs
         run: |
-          echo "${{ steps.get_changed_files.outputs.all }}"
+          FILES="${{ steps.get_changed_files.outputs.all }}"
+          PARTS=(${FILES//./ })
+          echo $PARTS
+          echo $PARTS >> $GITHUB_OUTPUT
       - uses: komorebitech/read-files-action@v1.5
         id: read_migration_files
         with:
