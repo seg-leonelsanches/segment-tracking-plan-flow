@@ -32,13 +32,13 @@ jobs:
           token: "${{secrets.GITHUB_TOKEN}}"
       - name: Get Tracking Plan IDs
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          delimiter="$(openssl rand -hex 8)"
           FILES='${{ steps.get_changed_files.outputs.all }}'
           FILES2=$(echo $FILES | tr -d [ | tr -d ])
           PARTS=(${FILES2//,/ })
           echo $PARTS
           echo $PARTS >> $GITHUB_OUTPUT
-          echo "$EOF" >> $GITHUB_OUTPUT
+          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
       - uses: komorebitech/read-files-action@v1.5
         id: read_migration_files
         with:
