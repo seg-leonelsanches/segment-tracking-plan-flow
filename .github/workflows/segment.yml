@@ -36,9 +36,7 @@ jobs:
           FILES='${{ steps.get_changed_files.outputs.all }}'
           FILES2=$(echo $FILES | tr -d [ | tr -d ])
           PARTS=(${FILES2//,/ })
-          echo $PARTS
-          echo $PARTS >> $GITHUB_OUTPUT
-          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
+          echo "::set-output name=tracking_plan_ids::${PARTS[*]}"
       - uses: komorebitech/read-files-action@v1.5
         id: read_migration_files
         with:
