@@ -36,7 +36,7 @@ jobs:
           FILES='${{ steps.get_changed_files.outputs.all }}'
           FILES2=$(echo $FILES | tr -d [ | tr -d ])
           PARTS=(${FILES2//,/ })
-          echo "::set-output name=tracking_plan_ids::${PARTS[*]}"
+          echo "tracking_plan_ids=${PARTS[*]}" >> $GITHUB_OUTPUT
       - uses: komorebitech/read-files-action@v1.5
         id: read_migration_files
         with:
@@ -45,6 +45,12 @@ jobs:
       - name: File Contents Output
         run: |
           echo "${{ steps.read_migration_files.outputs.content }}"
+      - name: Deploy to Segment
+        run: |
+          echo "Deploying to Segment"
+          echo "tracking_plan_ids=${{ steps.get_changed_files.outputs.all }}"
+          echo "files=${{ steps.read_migration_files.outputs.content }}"
+          echo "Deployed to Segment"
       #- name: Get changed files
       #  id: changed-files
       #  run: |
