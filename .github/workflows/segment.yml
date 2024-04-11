@@ -36,6 +36,12 @@ jobs:
           FILES='${{ steps.get_changed_files.outputs.all }}'
           FILES2=$(echo $FILES | tr -d [ | tr -d ])
           PARTS=(${FILES2//,/ })
+          for one_thing in $(echo $PARTS); do
+            echo $one_thing
+            if [[ $one_thing == "tp_"* ]]; then
+              echo "The string starts with 'tp_'"
+            fi
+          done
           echo "tracking_plan_ids=${PARTS[*]}" >> $GITHUB_OUTPUT
       - uses: komorebitech/read-files-action@v1.5
         id: read_migration_files
